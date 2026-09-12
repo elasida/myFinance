@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Finance</title>
+<title>MyFinance</title>
 
 <style>
 
 :root{
 --bg:#07111f;
---bg2:#0b1728;
---card:rgba(255,255,255,.05);
---border:rgba(255,255,255,.08);
+--bg2:#0d1b2f;
+--card:rgba(255,255,255,.06);
+--border:rgba(255,255,255,.09);
+--text:#ffffff;
+--muted:#9fb3c8;
 --primary:#4f8cff;
 --cyan:#00d4ff;
---success:#3ddc97;
---danger:#ff6b6b;
---text:#ffffff;
---muted:#9aa9c2;
+--success:#22c55e;
+--danger:#ef4444;
 }
 
 *{
@@ -33,29 +33,35 @@ body{
 background:
 radial-gradient(circle at top right,
 rgba(79,140,255,.22),
-transparent 35%
-),
+transparent 30%),
 
 radial-gradient(circle at top left,
-rgba(0,212,255,.12),
-transparent 30%
-),
+rgba(0,212,255,.15),
+transparent 35%),
 
-linear-gradient(
-180deg,
-var(--bg),
-var(--bg2)
-);
-
-color:var(--text);
-
-padding:18px;
-padding-bottom:110px;
+linear-gradient(180deg,var(--bg),var(--bg2));
 
 min-height:100vh;
+color:var(--text);
+padding:20px;
+padding-bottom:100px;
 }
 
 .header{
+margin-bottom:20px;
+}
+
+.header h1{
+font-size:30px;
+font-weight:700;
+}
+
+.header p{
+color:var(--muted);
+margin-top:4px;
+}
+
+.hero{
 
 background:
 linear-gradient(
@@ -64,34 +70,50 @@ rgba(79,140,255,.25),
 rgba(0,212,255,.08)
 );
 
-backdrop-filter:blur(25px);
+backdrop-filter:blur(20px);
 
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:
-0 10px 40px rgba(0,0,0,.35);
+border:1px solid var(--border);
 
 padding:24px;
 
 border-radius:28px;
 
+margin-bottom:18px;
+
+box-shadow:
+0 20px 40px rgba(0,0,0,.25);
+}
+
+.hero-label{
+color:#cbd5e1;
+font-size:13px;
+}
+
+.hero-balance{
+font-size:36px;
+font-weight:700;
+margin-top:10px;
 margin-bottom:20px;
 }
 
-.header h1{
-
-font-size:30px;
-
-font-weight:700;
-
-margin-bottom:8px;
+.hero-row{
+display:flex;
+justify-content:space-between;
+gap:15px;
 }
 
-.header p{
+.hero-box{
+flex:1;
+}
 
-color:#d6e2ff;
+.hero-box small{
+color:#94a3b8;
+display:block;
+margin-bottom:5px;
+}
 
-font-size:14px;
+.hero-box strong{
+font-size:16px;
 }
 
 .summary{
@@ -108,144 +130,107 @@ margin-bottom:20px;
 
 .summary-card{
 
-background:
-rgba(255,255,255,.04);
+background:var(--card);
 
-backdrop-filter:
-blur(20px);
+backdrop-filter:blur(20px);
 
-border:
-1px solid rgba(255,255,255,.05);
+border:1px solid var(--border);
 
-border-radius:22px;
+padding:15px;
 
-padding:16px;
-
-transition:.3s;
+border-radius:18px;
 }
 
-.summary-card:hover{
+.summary-card h5{
 
-transform:
-translateY(-3px);
+font-size:11px;
 
-box-shadow:
-0 10px 30px rgba(79,140,255,.12);
-}
-
-.summary-title{
-
-font-size:12px;
+letter-spacing:1px;
 
 color:var(--muted);
 
-letter-spacing:1px;
+margin-bottom:8px;
 }
 
-.summary-value{
+.summary-card p{
 
-margin-top:8px;
-
-font-size:20px;
+font-size:18px;
 
 font-weight:700;
 }
 
 .card{
 
-background:
-rgba(255,255,255,.045);
+background:var(--card);
 
-backdrop-filter:
-blur(20px);
+backdrop-filter:blur(20px);
 
-border:
-1px solid var(--border);
-
-border-radius:28px;
+border:1px solid var(--border);
 
 padding:20px;
 
-margin-bottom:18px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.15);
-}
-
-.card h2{
-
-font-size:18px;
+border-radius:24px;
 
 margin-bottom:20px;
 }
 
-.input-group{
-
+.card h2{
+font-size:19px;
 margin-bottom:15px;
 }
 
+.input-group{
+margin-bottom:14px;
+}
+
 .input-group label{
-
 display:block;
-
-margin-bottom:8px;
-
 font-size:13px;
-
-color:#c1d0ea;
+margin-bottom:6px;
+color:#cbd5e1;
 }
 
 .input-group input{
 
 width:100%;
 
-padding:15px 18px;
+padding:14px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.08);
 
 background:
-rgba(255,255,255,.03);
-
-border:
-1px solid rgba(255,255,255,.08);
-
-border-radius:16px;
+rgba(255,255,255,.04);
 
 color:white;
 
 font-size:15px;
-
-transition:.25s;
 }
 
 .input-group input:focus{
-
 outline:none;
 
 border-color:var(--primary);
 
 box-shadow:
 0 0 0 4px
-rgba(
-79,
-140,
-255,
-0.15
-);
+rgba(79,140,255,.15);
 }
 
 .readonly{
-
-opacity:.65;
+opacity:.7;
 }
 
-.add-btn{
+.btn{
 
 width:100%;
 
-padding:16px;
+padding:15px;
 
 border:none;
 
-border-radius:16px;
+border-radius:15px;
 
 background:
 linear-gradient(
@@ -258,99 +243,60 @@ color:white;
 
 font-weight:700;
 
-font-size:15px;
-
 cursor:pointer;
-
-box-shadow:
-0 8px 30px rgba(79,140,255,.3);
-
-transition:.25s;
 }
 
-.add-btn:hover{
-
-transform:
-translateY(-2px);
-}
-
-.outcome-card{
-
-background:
-rgba(255,255,255,.03);
-
-border:
-1px solid rgba(
-255,
-255,
-255,
-0.05
-);
-
-padding:16px;
-
-border-radius:18px;
-
-margin-top:12px;
+.outcome-item{
 
 display:flex;
 
 justify-content:space-between;
 
 align-items:center;
+
+padding:15px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.06);
+
+border-radius:16px;
+
+margin-top:12px;
+}
+
+.outcome-left{
+display:flex;
+flex-direction:column;
+gap:5px;
 }
 
 .outcome-name{
-
 font-weight:600;
-
-font-size:15px;
-
-margin-bottom:4px;
 }
 
-.outcome-value{
-
+.outcome-price{
+color:#ffb7b7;
 font-size:13px;
-
-color:#ffb4b4;
 }
 
 .delete-btn{
 
-background:
-rgba(255,107,107,.15);
+width:auto;
 
-border:
-1px solid rgba(255,107,107,.15);
+padding:10px 14px;
 
-color:#ff8d8d;
+background:var(--danger);
 
-padding:10px 15px;
+border:none;
 
 border-radius:12px;
 
+color:white;
+
 cursor:pointer;
-}
-
-.delete-btn:hover{
-
-background:
-rgba(255,107,107,.25);
-}
-
-#balance{
-
-color:#3ddc97;
-
-text-shadow:
-0 0 25px
-rgba(
-61,
-220,
-151,
-0.4
-);
 }
 
 .bottom-nav{
@@ -358,317 +304,263 @@ rgba(
 position:fixed;
 
 left:15px;
-
 right:15px;
-
 bottom:15px;
 
 background:
-rgba(17,24,39,.75);
+rgba(15,23,42,.85);
 
 backdrop-filter:
 blur(25px);
 
 border:
-1px solid rgba(
-255,
-255,
-255,
-0.08
-);
+1px solid rgba(255,255,255,.08);
 
-border-radius:28px;
+border-radius:25px;
 
 padding:14px;
 
 display:flex;
 
 justify-content:space-around;
-
-box-shadow:
-0 15px 40px rgba(
-0,
-0,
-0,
-0.35
-);
 }
 
 .nav-item{
 
-text-align:center;
-
 font-size:11px;
 
-color:#91a4c2;
+text-align:center;
 
-transition:.25s;
+color:#9fb3c8;
 }
 
-.nav-item:hover{
-
-color:white;
-}
-
-.nav-icon{
-
+.nav-item span{
 display:block;
-
-font-size:22px;
-
+font-size:21px;
 margin-bottom:4px;
 }
 
 @media(max-width:700px){
 
 .summary{
-
-grid-template-columns:
-1fr;
+grid-template-columns:1fr;
 }
 
-.header h1{
-
-font-size:24px;
+.hero-row{
+flex-direction:column;
 }
 
+.hero-balance{
+font-size:28px;
 }
 
-</style>
-
-body{
-    font-family:Arial,sans-serif;
-    background:#f5f7fb;
-    margin:0;
-    padding:15px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    padding:15px;
-    margin-bottom:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.summary{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
-
-.summary-box{
-    color:white;
-    border-radius:12px;
-    padding:15px;
-}
-
-.income{
-    background:#2563eb;
-}
-
-.outcome{
-    background:#dc2626;
-}
-
-.balance{
-    background:#16a34a;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin-top:5px;
-    margin-bottom:10px;
-    box-sizing:border-box;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-}
-
-.expense-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px;
-    margin-top:10px;
-    background:#f3f4f6;
-    border-radius:10px;
-}
-
-.delete-btn{
-    width:auto;
-    background:red;
-    padding:8px 10px;
 }
 
 </style>
-
 </head>
+
 <body>
 
-<h2>💰 Dashboard Finance Personal</h2>
+<div class="header">
+<h1>💰 MyFinance</h1>
+<p id="monthLabel"></p>
+</div>
+
+<div class="hero">
+
+<div class="hero-label">
+Available Balance
+</div>
+
+<div
+class="hero-balance"
+id="heroBalance">
+Rp 0
+</div>
+
+<div class="hero-row">
+
+<div class="hero-box">
+<small>Total Income</small>
+<strong id="heroIncome">Rp 0</strong>
+</div>
+
+<div class="hero-box">
+<small>Total Outcome</small>
+<strong id="heroOutcome">Rp 0</strong>
+</div>
+
+</div>
+
+</div>
 
 <div class="summary">
 
-    <div class="summary-box income">
-        <h3>Total Income</h3>
-        <div id="totalIncome">Rp 0</div>
-    </div>
+<div class="summary-card">
+<h5>INCOME</h5>
+<p id="totalIncome">Rp 0</p>
+</div>
 
-    <div class="summary-box outcome">
-        <h3>Total Outcome</h3>
-        <div id="totalOutcome">Rp 0</div>
-    </div>
+<div class="summary-card">
+<h5>OUTCOME</h5>
+<p id="totalOutcome">Rp 0</p>
+</div>
 
-    <div class="summary-box balance">
-        <h3>Sisa Uang</h3>
-        <div id="balance">Rp 0</div>
-    </div>
+<div class="summary-card">
+<h5>BALANCE</h5>
+<p id="balance">Rp 0</p>
+</div>
 
 </div>
 
 <div class="card">
 
-<h3>Income</h3>
+<h2>💵 Income Bulanan</h2>
 
+<div class="input-group">
 <label>Gaji</label>
-<input type="number" id="salary" value="0">
+<input type="number" id="salary">
+</div>
 
+<div class="input-group">
 <label>Bonus</label>
-<input type="number" id="bonus" value="0">
+<input type="number" id="bonus">
+</div>
 
+<div class="input-group">
 <label>Tunjangan</label>
-<input type="number" id="allowance" value="0">
+<input type="number" id="allowance">
+</div>
 
+<div class="input-group">
 <label>Lembur (Auto)</label>
-<input type="number" id="overtime" value="0" readonly>
+<input type="number" id="overtime" readonly class="readonly">
+</div>
 
+<div class="input-group">
 <label>Travel Normal (Auto)</label>
-<input type="number" id="travelNormal" value="0" readonly>
+<input type="number" id="travelNormal" readonly class="readonly">
+</div>
 
+<div class="input-group">
 <label>Travel Weekend (Auto)</label>
-<input type="number" id="travelWeekend" value="0" readonly>
+<input type="number" id="travelWeekend" readonly class="readonly">
+</div>
 
+<div class="input-group">
 <label>Field Allowance (Auto)</label>
-<input type="number" id="fieldAllowance" value="0" readonly>
+<input type="number" id="fieldAllowance" readonly class="readonly">
+</div>
 
 </div>
 
 <div class="card">
 
-<h3>Tambah Outcome</h3>
+<h2>📤 Outcome Bulanan</h2>
 
-<input type="text" id="expenseName" placeholder="Nama Pengeluaran">
+<div class="input-group">
+<input
+type="text"
+placeholder="Nama Pengeluaran"
+id="expenseName">
+</div>
 
-<input type="number" id="expenseAmount" placeholder="Nominal">
+<div class="input-group">
+<input
+type="number"
+placeholder="Nominal"
+id="expenseAmount">
+</div>
 
-<button onclick="addExpense()">Tambah Outcome</button>
+<button class="btn"
+onclick="addExpense()">
++ Tambah Pengeluaran
+</button>
 
 <div id="expenseList"></div>
 
 </div>
 
+<div class="bottom-nav">
+
+<div class="nav-item">
+<span>🏠</span>
+Dashboard
+</div>
+
+<div class="nav-item">
+<span>⏰</span>
+Lembur
+</div>
+
+<div class="nav-item">
+<span>🏢</span>
+Expense
+</div>
+
+<div class="nav-item">
+<span>📊</span>
+Report
+</div>
+
+<div class="nav-item">
+<span>⚙️</span>
+Setting
+</div>
+
+</div>
+
 <script>
 
-let expenses=[];
+let expenses =
+JSON.parse(
+localStorage.getItem("expenses")
+) || [];
 
-function rupiah(n){
-    return "Rp " + Number(n).toLocaleString("id-ID");
+function rupiah(value){
+return "Rp " +
+Number(value).toLocaleString("id-ID");
 }
 
-function updateSummary(){
+function saveData(){
 
-    let income=
-    Number(salary.value)+
-    Number(bonus.value)+
-    Number(allowance.value)+
-    Number(overtime.value)+
-    Number(travelNormal.value)+
-    Number(travelWeekend.value)+
-    Number(fieldAllowance.value);
+const data = {
 
-    let outcome=
-    expenses.reduce((a,b)=>a+b.amount,0);
+salary:salary.value,
+bonus:bonus.value,
+allowance:allowance.value,
+overtime:overtime.value,
+travelNormal:travelNormal.value,
+travelWeekend:travelWeekend.value,
+fieldAllowance:fieldAllowance.value
 
-    totalIncome.innerHTML=rupiah(income);
-    totalOutcome.innerHTML=rupiah(outcome);
-    balance.innerHTML=rupiah(income-outcome);
+};
 
-}
+localStorage.setItem(
+"incomeData",
+JSON.stringify(data)
+);
 
-function addExpense(){
-
-    let name=expenseName.value;
-    let amount=Number(expenseAmount.value);
-
-    if(!name || amount<=0){
-        alert("Lengkapi data");
-        return;
-    }
-
-    expenses.push({
-        name:name,
-        amount:amount
-    });
-
-    renderExpense();
-
-    expenseName.value="";
-    expenseAmount.value="";
+localStorage.setItem(
+"expenses",
+JSON.stringify(expenses)
+);
 
 }
 
-function renderExpense(){
+function loadData(){
 
-    expenseList.innerHTML="";
+const incomeData =
+JSON.parse(
+localStorage.getItem("incomeData")
+);
 
-    expenses.forEach((item,index)=>{
+if(incomeData){
 
-        expenseList.innerHTML += `
-        <div class="expense-item">
-            <div>
-                <b>${item.name}</b><br>
-                ${rupiah(item.amount)}
-            </div>
+salary.value =
+incomeData.salary || 0;
 
-            <button class="delete-btn"
-            onclick="deleteExpense(${index})">
-            Hapus
-            </button>
-        </div>
-        `;
+bonus.value =
+incomeData.bonus || 0;
 
-    });
-
-    updateSummary();
-
-}
-
-function deleteExpense(index){
-
-    expenses.splice(index,1);
-
-    renderExpense();
-
-}
-
-document.querySelectorAll("input").forEach(el=>{
-    el.addEventListener("input",updateSummary);
-});
-
-updateSummary();
-
-</script>
-
-</body>
-</html>
+allowance.value =
