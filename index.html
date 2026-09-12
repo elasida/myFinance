@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Finance</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    margin:0;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+.summary-box{
+    color:white;
+    border-radius:12px;
+    padding:15px;
+}
+
+.income{
+    background:#2563eb;
+}
+
+.outcome{
+    background:#dc2626;
+}
+
+.balance{
+    background:#16a34a;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:10px;
+    box-sizing:border-box;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+.expense-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    margin-top:10px;
+    background:#f3f4f6;
+    border-radius:10px;
+}
+
+.delete-btn{
+    width:auto;
+    background:red;
+    padding:8px 10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2>💰 Dashboard Finance Personal</h2>
+
+<div class="summary">
+
+    <div class="summary-box income">
+        <h3>Total Income</h3>
+        <div id="totalIncome">Rp 0</div>
+    </div>
+
+    <div class="summary-box outcome">
+        <h3>Total Outcome</h3>
+        <div id="totalOutcome">Rp 0</div>
+    </div>
+
+    <div class="summary-box balance">
+        <h3>Sisa Uang</h3>
+        <div id="balance">Rp 0</div>
+    </div>
+
+</div>
+
+<div class="card">
+
+<h3>Income</h3>
+
+<label>Gaji</label>
+<input type="number" id="salary" value="0">
+
+<label>Bonus</label>
+<input type="number" id="bonus" value="0">
+
+<label>Tunjangan</label>
+<input type="number" id="allowance" value="0">
+
+<label>Lembur (Auto)</label>
+<input type="number" id="overtime" value="0" readonly>
+
+<label>Travel Normal (Auto)</label>
+<input type="number" id="travelNormal" value="0" readonly>
+
+<label>Travel Weekend (Auto)</label>
+<input type="number" id="travelWeekend" value="0" readonly>
+
+<label>Field Allowance (Auto)</label>
+<input type="number" id="fieldAllowance" value="0" readonly>
+
+</div>
+
+<div class="card">
+
+<h3>Tambah Outcome</h3>
+
+<input type="text" id="expenseName" placeholder="Nama Pengeluaran">
+
+<input type="number" id="expenseAmount" placeholder="Nominal">
+
+<button onclick="addExpense()">Tambah Outcome</button>
+
+<div id="expenseList"></div>
+
+</div>
+
+<script>
+
+let expenses=[];
+
+function rupiah(n){
+    return "Rp " + Number(n).toLocaleString("id-ID");
+}
+
+function updateSummary(){
+
+    let income=
+    Number(salary.value)+
+    Number(bonus.value)+
+    Number(allowance.value)+
+    Number(overtime.value)+
+    Number(travelNormal.value)+
+    Number(travelWeekend.value)+
+    Number(fieldAllowance.value);
+
+    let outcome=
+    expenses.reduce((a,b)=>a+b.amount,0);
+
+    totalIncome.innerHTML=rupiah(income);
+    totalOutcome.innerHTML=rupiah(outcome);
+    balance.innerHTML=rupiah(income-outcome);
+
+}
+
+function addExpense(){
+
+    let name=expenseName.value;
+    let amount=Number(expenseAmount.value);
+
+    if(!name || amount<=0){
+        alert("Lengkapi data");
+        return;
+    }
+
+    expenses.push({
+        name:name,
+        amount:amount
+    });
+
+    renderExpense();
+
+    expenseName.value="";
+    expenseAmount.value="";
+
+}
+
+function renderExpense(){
+
+    expenseList.innerHTML="";
+
+    expenses.forEach((item,index)=>{
+
+        expenseList.innerHTML += `
+        <div class="expense-item">
+            <div>
+                <b>${item.name}</b><br>
+                ${rupiah(item.amount)}
+            </div>
+
+            <button class="delete-btn"
+            onclick="deleteExpense(${index})">
+            Hapus
+            </button>
+        </div>
+        `;
+
+    });
+
+    updateSummary();
+
+}
+
+function deleteExpense(index){
+
+    expenses.splice(index,1);
+
+    renderExpense();
+
+}
+
+document.querySelectorAll("input").forEach(el=>{
+    el.addEventListener("input",updateSummary);
+});
+
+updateSummary();
+
+</script>
+
+</body>
+</html>
