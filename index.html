@@ -1,566 +1,144 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MyFinance</title>
-
-<style>
-
-:root{
---bg:#07111f;
---bg2:#0d1b2f;
---card:rgba(255,255,255,.06);
---border:rgba(255,255,255,.09);
---text:#ffffff;
---muted:#9fb3c8;
---primary:#4f8cff;
---cyan:#00d4ff;
---success:#22c55e;
---danger:#ef4444;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
-body{
-
-background:
-radial-gradient(circle at top right,
-rgba(79,140,255,.22),
-transparent 30%),
-
-radial-gradient(circle at top left,
-rgba(0,212,255,.15),
-transparent 35%),
-
-linear-gradient(180deg,var(--bg),var(--bg2));
-
-min-height:100vh;
-color:var(--text);
-padding:20px;
-padding-bottom:100px;
-}
-
-.header{
-margin-bottom:20px;
-}
-
-.header h1{
-font-size:30px;
-font-weight:700;
-}
-
-.header p{
-color:var(--muted);
-margin-top:4px;
-}
-
-.hero{
-
-background:
-linear-gradient(
-135deg,
-rgba(79,140,255,.25),
-rgba(0,212,255,.08)
-);
-
-backdrop-filter:blur(20px);
-
-border:1px solid var(--border);
-
-padding:24px;
-
-border-radius:28px;
-
-margin-bottom:18px;
-
-box-shadow:
-0 20px 40px rgba(0,0,0,.25);
-}
-
-.hero-label{
-color:#cbd5e1;
-font-size:13px;
-}
-
-.hero-balance{
-font-size:36px;
-font-weight:700;
-margin-top:10px;
-margin-bottom:20px;
-}
-
-.hero-row{
-display:flex;
-justify-content:space-between;
-gap:15px;
-}
-
-.hero-box{
-flex:1;
-}
-
-.hero-box small{
-color:#94a3b8;
-display:block;
-margin-bottom:5px;
-}
-
-.hero-box strong{
-font-size:16px;
-}
-
-.summary{
-
-display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-gap:12px;
-
-margin-bottom:20px;
-}
-
-.summary-card{
-
-background:var(--card);
-
-backdrop-filter:blur(20px);
-
-border:1px solid var(--border);
-
-padding:15px;
-
-border-radius:18px;
-}
-
-.summary-card h5{
-
-font-size:11px;
-
-letter-spacing:1px;
-
-color:var(--muted);
-
-margin-bottom:8px;
-}
-
-.summary-card p{
-
-font-size:18px;
-
-font-weight:700;
-}
-
-.card{
-
-background:var(--card);
-
-backdrop-filter:blur(20px);
-
-border:1px solid var(--border);
-
-padding:20px;
-
-border-radius:24px;
-
-margin-bottom:20px;
-}
-
-.card h2{
-font-size:19px;
-margin-bottom:15px;
-}
-
-.input-group{
-margin-bottom:14px;
-}
-
-.input-group label{
-display:block;
-font-size:13px;
-margin-bottom:6px;
-color:#cbd5e1;
-}
-
-.input-group input{
-
-width:100%;
-
-padding:14px;
-
-border-radius:14px;
-
-border:1px solid rgba(255,255,255,.08);
-
-background:
-rgba(255,255,255,.04);
-
-color:white;
-
-font-size:15px;
-}
-
-.input-group input:focus{
-outline:none;
-
-border-color:var(--primary);
-
-box-shadow:
-0 0 0 4px
-rgba(79,140,255,.15);
-}
-
-.readonly{
-opacity:.7;
-}
-
-.btn{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:15px;
-
-background:
-linear-gradient(
-135deg,
-#4f8cff,
-#00d4ff
-);
-
-color:white;
-
-font-weight:700;
-
-cursor:pointer;
-}
-
-.outcome-item{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:15px;
-
-background:
-rgba(255,255,255,.04);
-
-border:
-1px solid rgba(255,255,255,.06);
-
-border-radius:16px;
-
-margin-top:12px;
-}
-
-.outcome-left{
-display:flex;
-flex-direction:column;
-gap:5px;
-}
-
-.outcome-name{
-font-weight:600;
-}
-
-.outcome-price{
-color:#ffb7b7;
-font-size:13px;
-}
-
-.delete-btn{
-
-width:auto;
-
-padding:10px 14px;
-
-background:var(--danger);
-
-border:none;
-
-border-radius:12px;
-
-color:white;
-
-cursor:pointer;
-}
-
-.bottom-nav{
-
-position:fixed;
-
-left:15px;
-right:15px;
-bottom:15px;
-
-background:
-rgba(15,23,42,.85);
-
-backdrop-filter:
-blur(25px);
-
-border:
-1px solid rgba(255,255,255,.08);
-
-border-radius:25px;
-
-padding:14px;
-
-display:flex;
-
-justify-content:space-around;
-}
-
-.nav-item{
-
-font-size:11px;
-
-text-align:center;
-
-color:#9fb3c8;
-}
-
-.nav-item span{
-display:block;
-font-size:21px;
-margin-bottom:4px;
-}
-
-@media(max-width:700px){
-
-.summary{
-grid-template-columns:1fr;
-}
-
-.hero-row{
-flex-direction:column;
-}
-
-.hero-balance{
-font-size:28px;
-}
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFinance</title>
+
+    style.css
 </head>
 
 <body>
 
-<div class="header">
-<h1>💰 MyFinance</h1>
-<p id="monthLabel"></p>
-</div>
+    <div class="header">
+        <h1>💰 MyFinance</h1>
+        <p id="monthLabel"></p>
+    </div>
 
-<div class="hero">
+    <div class="hero">
 
-<div class="hero-label">
-Available Balance
-</div>
+        <div class="hero-label">
+            Available Balance
+        </div>
 
-<div
-class="hero-balance"
-id="heroBalance">
-Rp 0
-</div>
+        <div class="hero-balance" id="heroBalance">
+            Rp 0
+        </div>
 
-<div class="hero-row">
+        <div class="hero-row">
 
-<div class="hero-box">
-<small>Total Income</small>
-<strong id="heroIncome">Rp 0</strong>
-</div>
+            <div class="hero-box">
+                <small>Total Income</small>
+                <strong id="heroIncome">Rp 0</strong>
+            </div>
 
-<div class="hero-box">
-<small>Total Outcome</small>
-<strong id="heroOutcome">Rp 0</strong>
-</div>
+            <div class="hero-box">
+                <small>Total Outcome</small>
+                <strong id="heroOutcome">Rp 0</strong>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="summary">
+    <div class="summary">
 
-<div class="summary-card">
-<h5>INCOME</h5>
-<p id="totalIncome">Rp 0</p>
-</div>
+        <div class="summary-card">
+            <h5>INCOME</h5>
+            <p id="totalIncome">Rp 0</p>
+        </div>
 
-<div class="summary-card">
-<h5>OUTCOME</h5>
-<p id="totalOutcome">Rp 0</p>
-</div>
+        <div class="summary-card">
+            <h5>OUTCOME</h5>
+            <p id="totalOutcome">Rp 0</p>
+        </div>
 
-<div class="summary-card">
-<h5>BALANCE</h5>
-<p id="balance">Rp 0</p>
-</div>
+        <div class="summary-card">
+            <h5>BALANCE</h5>
+            <p id="balance">Rp 0</p>
+        </div>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="card">
 
-<h2>💵 Income Bulanan</h2>
+        <h2>💵 Income Bulanan</h2>
 
-<div class="input-group">
-<label>Gaji</label>
-<input type="number" id="salary">
-</div>
+        <div class="input-group">
+            <label>Gaji</label>
+            <input type="number" id="salary" value="0">
+        </div>
 
-<div class="input-group">
-<label>Bonus</label>
-<input type="number" id="bonus">
-</div>
+        <div class="input-group">
+            <label>Bonus</label>
+            <input type="number" id="bonus" value="0">
+        </div>
 
-<div class="input-group">
-<label>Tunjangan</label>
-<input type="number" id="allowance">
-</div>
+        <div class="input-group">
+            <label>Tunjangan</label>
+            <input type="number" id="allowance" value="0">
+        </div>
 
-<div class="input-group">
-<label>Lembur (Auto)</label>
-<input type="number" id="overtime" readonly class="readonly">
-</div>
+        <div class="input-group">
+            <label>Lembur (Auto)</label>
+            <input type="number" id="overtime" value="0" readonly>
+        </div>
 
-<div class="input-group">
-<label>Travel Normal (Auto)</label>
-<input type="number" id="travelNormal" readonly class="readonly">
-</div>
+        <div class="input-group">
+            <label>Travel Normal (Auto)</label>
+            <input type="number" id="travelNormal" value="0" readonly>
+        </div>
 
-<div class="input-group">
-<label>Travel Weekend (Auto)</label>
-<input type="number" id="travelWeekend" readonly class="readonly">
-</div>
+        <div class="input-group">
+            <label>Travel Weekend (Auto)</label>
+            <input type="number" id="travelWeekend" value="0" readonly>
+        </div>
 
-<div class="input-group">
-<label>Field Allowance (Auto)</label>
-<input type="number" id="fieldAllowance" readonly class="readonly">
-</div>
+        <div class="input-group">
+            <label>Field Allowance (Auto)</label>
+            <input type="number" id="fieldAllowance" value="0" readonly>
+        </div>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="card">
 
-<h2>📤 Outcome Bulanan</h2>
+        <h2>📤 Outcome Bulanan</h2>
 
-<div class="input-group">
-<input
-type="text"
-placeholder="Nama Pengeluaran"
-id="expenseName">
-</div>
+        <div class="input-group">
+            <input type="text"
+                   id="expenseName"
+                   placeholder="Nama Pengeluaran">
+        </div>
 
-<div class="input-group">
-<input
-type="number"
-placeholder="Nominal"
-id="expenseAmount">
-</div>
+        <div class="input-group">
+            <input type="number"
+                   id="expenseAmount"
+                   placeholder="Nominal">
+        </div>
 
-<button class="btn"
-onclick="addExpense()">
-+ Tambah Pengeluaran
-</button>
+        <button class="btn"
+                onclick="addExpense()">
+            + Tambah Pengeluaran
+        </button>
 
-<div id="expenseList"></div>
+        <div id="expenseList"></div>
 
-</div>
+    </div>
 
-<div class="bottom-nav">
+    <div class="bottom-nav">
 
-<div class="nav-item">
-<span>🏠</span>
-Dashboard
-</div>
+        <div class="nav-item">🏠<br>Dashboard</div>
+        <div class="nav-item">⏰<br>Lembur</div>
+        <div class="nav-item">🏢<br>Expense</div>
+        <div class="nav-item">📊<br>Report</div>
+        <div class="nav-item">⚙️<br>Setting</div>
 
-<div class="nav-item">
-<span>⏰</span>
-Lembur
-</div>
+    </div>
 
-<div class="nav-item">
-<span>🏢</span>
-Expense
-</div>
+    app.jsscript>
 
-<div class="nav-item">
-<span>📊</span>
-Report
-</div>
+</body>
 
-<div class="nav-item">
-<span>⚙️</span>
-Setting
-</div>
-
-</div>
-
-<script>
-
-let expenses =
-JSON.parse(
-localStorage.getItem("expenses")
-) || [];
-
-function rupiah(value){
-return "Rp " +
-Number(value).toLocaleString("id-ID");
-}
-
-function saveData(){
-
-const data = {
-
-salary:salary.value,
-bonus:bonus.value,
-allowance:allowance.value,
-overtime:overtime.value,
-travelNormal:travelNormal.value,
-travelWeekend:travelWeekend.value,
-fieldAllowance:fieldAllowance.value
-
-};
-
-localStorage.setItem(
-"incomeData",
-JSON.stringify(data)
-);
-
-localStorage.setItem(
-"expenses",
-JSON.stringify(expenses)
-);
-
-}
-
-function loadData(){
-
-const incomeData =
-JSON.parse(
-localStorage.getItem("incomeData")
-);
-
-if(incomeData){
-
-salary.value =
-incomeData.salary || 0;
-
-bonus.value =
-incomeData.bonus || 0;
-
-allowance.value =
+</html>
